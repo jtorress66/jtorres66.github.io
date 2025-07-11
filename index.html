@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IRADI</title>
   <style>
-    /* Reset default margins and ensure box-sizing */
     * {
       margin: 0;
       padding: 0;
@@ -18,16 +17,25 @@
       color: #333;
     }
 
-    /* Header styles */
     header {
       background-color: #f4f4f4;
       padding: 1rem;
       text-align: center;
     }
 
-    header h1 {
+    header .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    header .logo-title img {
+      height: 50px;
+    }
+
+    header .logo-title h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
     }
 
     nav ul {
@@ -36,6 +44,7 @@
       justify-content: center;
       gap: 2rem;
       padding: 1rem 0;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -48,7 +57,6 @@
       color: #007bff;
     }
 
-    /* Hero section */
     .hero {
       background-color: #e0e0e0;
       padding: 3rem 1rem;
@@ -75,7 +83,6 @@
       border-radius: 5px;
     }
 
-    /* Sections */
     section {
       padding: 2rem 1rem;
       max-width: 1200px;
@@ -88,7 +95,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Mission cards */
     .mission-cards, .ministry-cards, .event-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -97,10 +103,10 @@
     }
 
     .card {
-      background-color: #f9f9f9;
       padding: 1.5rem;
       border-radius: 8px;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .card h3 {
@@ -108,7 +114,34 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Prayer section */
+    .mission-cards .card:nth-child(1) {
+      background-color: #e0f0ff;
+    }
+
+    .mission-cards .card:nth-child(2) {
+      background-color: #f0e6ff;
+    }
+
+    .mission-cards .card:nth-child(3) {
+      background-color: #ffe6ed;
+    }
+
+    .ministry-cards .card:nth-child(1) {
+      background-color: #e6f7ff;
+    }
+
+    .ministry-cards .card:nth-child(2) {
+      background-color: #f0fff4;
+    }
+
+    .ministry-cards .card:nth-child(3) {
+      background-color: #fff4f7;
+    }
+
+    .event-cards .card {
+      background-color: #fff9e6;
+    }
+
     .prayer {
       text-align: center;
     }
@@ -122,7 +155,6 @@
       border-radius: 5px;
     }
 
-    /* Footer */
     footer {
       background-color: #333;
       color: #fff;
@@ -131,9 +163,8 @@
       font-size: 0.9rem;
     }
 
-    /* Mobile responsiveness */
     @media (max-width: 768px) {
-      header h1 {
+      header .logo-title h1 {
         font-size: 1.8rem;
       }
 
@@ -169,18 +200,6 @@
     }
 
     @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-
-      .hero h2 {
-        font-size: 1.3rem;
-      }
-
-      .hero p {
-        font-size: 0.9rem;
-      }
-
       section {
         padding: 1rem;
       }
@@ -189,7 +208,10 @@
 </head>
 <body>
   <header>
-    <h1>IRADI</h1>
+    <div class="logo-title">
+      <img src="https://raw.githubusercontent.com/irress66/iradi/main/assets/logo.png" alt="IRADI Logo" />
+      <h1>IRADI</h1>
+    </div>
     <nav>
       <ul>
         <li><a href="#mision">Misión</a></li>
