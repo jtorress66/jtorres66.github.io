@@ -3,156 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IRADI | Iglesia de Restauración y Adoración a Dios, Inc.</title>
+  <title>IRADI | Inspiración Diaria</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes floatIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-float-in {
-      animation: floatIn 1.2s ease-out forwards;
-    }
-    .delay-200 {
-      animation-delay: 0.2s;
-    }
+    .carousel-slide { position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:opacity 1s ease; display:flex; align-items:flex-end; justify-content:center; }
+    .carousel-slide.active { opacity:1; }
+    .carousel-overlay { background:rgba(0,0,0,0.5); padding:1.5rem; margin-bottom:2rem; border-radius:0.5rem; max-width:90%; text-align:center; color:#fff; }
+    .carousel-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; }
+    .carousel-dot { width:10px; height:10px; background:white; opacity:0.5; border-radius:50%; cursor:pointer; }
+    .carousel-dot.active { opacity:1; background:#4f46e5; }
   </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-gray-50 text-gray-900">
 
-  <!-- Header -->
-  <header class="bg-white border-b shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Logo + IRADI Name -->
-      <div class="flex items-center space-x-4">
-        <img src="Logo IRADI2.png" alt="IRADI Logo" class="h-16 w-auto animate-float-in" />
-        <span class="text-4xl sm:text-6xl font-extrabold tracking-widest bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-md animate-float-in delay-200">
-          IRADI
-        </span>
+  <!-- Top Utility Bar -->
+  <div class="bg-white border-b text-gray-600 text-sm px-4 py-2 text-right">
+    <a href="#devocional" class="hover:underline mx-2">Devocional Diario</a>
+    <a href="#creencias" class="hover:underline mx-2">Creencias</a>
+    <a href="#espanol" class="hover:underline mx-2">IRADI Español</a>
+  </div>
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
+      <div class="flex items-center space-x-3">
+        <img src="https://source.unsplash.com/random/60x60?logo,church" alt="Logo IRADI" class="w-10 h-10 rounded-full" />
+        <span class="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-indigo-600 to-pink-500 bg-clip-text text-transparent">IRADI</span>
       </div>
-
-      <!-- Navigation -->
-      <nav class="space-x-6 hidden md:flex">
-        <a href="#mision" class="text-gray-700 hover:text-indigo-600 font-medium">Misión</a>
-        <a href="#ministerios" class="text-gray-700 hover:text-indigo-600 font-medium">Ministerios</a>
-        <a href="#eventos" class="text-gray-700 hover:text-indigo-600 font-medium">Eventos</a>
-        <a href="#contacto" class="text-gray-700 hover:text-indigo-600 font-medium">Contáctanos</a>
+      <!-- Mobile toggle -->
+      <button id="menuToggle" class="md:hidden text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+      <!-- Menu -->
+      <nav id="mobileMenu" class="hidden md:flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-6 uppercase text-sm font-medium absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent px-4 md:px-0 py-2 md:py-0 shadow md:shadow-none">
+        <a href="#creencias" class="hover:text-indigo-600">Creencias</a>
+        <a href="#devocional" class="hover:text-indigo-600">Devocional</a>
+        <a href="#eventos" class="hover:text-indigo-600">Eventos</a>
+        <a href="#contacto" class="hover:text-indigo-600">Contacto</a>
       </nav>
-
-      <!-- CTA Button -->
-      <a href="#oracion" class="inline-block px-5 py-2 text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition">
-        Petición de Oración
-      </a>
+      <a href="#peticion" class="hidden md:inline px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition uppercase text-sm font-semibold">Petición de Oración</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-gray-50 py-20">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-900">
-        Avivando Corazones, Formando Discípulos
-      </h1>
-      <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-        IRADI es una comunidad centrada en Cristo, dedicada a la transformación espiritual a través del evangelio, la oración y el servicio.
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <a href="#ministerios" class="px-6 py-3 bg-indigo-600 text-white rounded-xl text-lg font-medium hover:bg-indigo-700 transition">Conocer Ministerios</a>
-        <a href="#quienes-somos" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl text-lg font-medium hover:border-indigo-500 hover:text-indigo-600 transition">Quiénes Somos</a>
+  <!-- Hero Carousel -->
+  <section class="relative h-[90vh]">
+    <div class="carousel-slide active" style="background-image:url('https://source.unsplash.com/1600x900/?prayer,church');">
+      <div class="carousel-overlay">
+        <h4 class="uppercase text-sm tracking-widest">Oración</h4>
+        <h2 class="text-2xl sm:text-4xl font-bold mt-2">Conectando con Dios en Comunidad</h2>
       </div>
+    </div>
+    <div class="carousel-slide" style="background-image:url('https://source.unsplash.com/1600x900/?bible,faith');">
+      <div class="carousel-overlay">
+        <h4 class="uppercase text-sm tracking-widest">Lectura</h4>
+        <h2 class="text-2xl sm:text-4xl font-bold mt-2">Descubre el Poder de la Palabra</h2>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background-image:url('https://source.unsplash.com/1600x900/?worship,choir');">
+      <div class="carousel-overlay">
+        <h4 class="uppercase text-sm tracking-widest">Alabanza</h4>
+        <h2 class="text-2xl sm:text-4xl font-bold mt-2">Unidos en Fe y Alabanza</h2>
+      </div>
+    </div>
+    <div class="carousel-dots">
+      <div class="carousel-dot active" onclick="setSlide(0)"></div>
+      <div class="carousel-dot" onclick="setSlide(1)"></div>
+      <div class="carousel-dot" onclick="setSlide(2)"></div>
     </div>
   </section>
 
-  <!-- Features: Mission -->
-  <section id="mision" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900">Nuestra Misión</h2>
-        <p class="mt-4 text-gray-600 max-w-xl mx-auto">
-          Existimos para glorificar a Dios equipando discípulos fieles, proclamando el evangelio y sirviendo con amor en nuestras comunidades.
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="p-6 border rounded-xl hover:shadow-lg transition">
-          <h3 class="text-xl font-semibold mb-2 text-indigo-600">Adoración Bíblica</h3>
-          <p class="text-gray-600">Celebramos a Cristo a través de predicación expositiva, música centrada en el evangelio y oración ferviente.</p>
-        </div>
-        <div class="p-6 border rounded-xl hover:shadow-lg transition">
-          <h3 class="text-xl font-semibold mb-2 text-indigo-600">Formación Discipular</h3>
-          <p class="text-gray-600">Fomentamos el crecimiento espiritual mediante estudios bíblicos, mentorías y comunidades en casa.</p>
-        </div>
-        <div class="p-6 border rounded-xl hover:shadow-lg transition">
-          <h3 class="text-xl font-semibold mb-2 text-indigo-600">Servicio Compasivo</h3>
-          <p class="text-gray-600">Extendemos la gracia de Dios a través de misiones, ayuda comunitaria y proyectos de impacto social.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
 
-  <!-- Ministries -->
-  <section id="ministerios" class="bg-gray-50 py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900">Ministerios IRADI</h2>
-        <p class="mt-4 text-gray-600 max-w-xl mx-auto">Diferentes expresiones de nuestro llamado como iglesia al servicio del Reino.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 border rounded-xl shadow-sm">
-          <h3 class="text-lg font-semibold text-indigo-700 mb-2">Ministerio de Jóvenes</h3>
-          <p class="text-gray-600">Inspirando a la próxima generación a vivir con propósito en Cristo.</p>
-        </div>
-        <div class="bg-white p-6 border rounded-xl shadow-sm">
-          <h3 class="text-lg font-semibold text-indigo-700 mb-2">Misiones Locales</h3>
-          <p class="text-gray-600">Llevamos esperanza a comunidades necesitadas en nuestra ciudad.</p>
-        </div>
-        <div class="bg-white p-6 border rounded-xl shadow-sm">
-          <h3 class="text-lg font-semibold text-indigo-700 mb-2">Ministerio de Mujeres</h3>
-          <p class="text-gray-600">Fortaleciendo la fe y el liderazgo espiritual de las mujeres en Cristo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Events -->
-  <section id="eventos" class="py-24 bg-white">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6">Próximos Eventos</h2>
-      <p class="font-bold text-gray-650 mb-10">Acompáñanos y sé parte de lo que Dios está haciendo en IRADI.</p>
-      <div class="space-y-6 text-left max-w-3xl mx-auto">
-        <div class="border-l-4 pl-4 border-indigo-600">
-          <h3 class="text-xl font-semibold text-indigo-700">La Iglesia de Restauración y Adoración a Dios (IRADI) te invita a celebrar su 22ndo Aniversariobajo el lema: De regreso a casa</h3>
-          <h3 class="text-xl font-semibold text-indigo-700">Sábado, 2 de agosto de 2025 | Centro Cristiano Manantial de Vida</h3>
-		   <img src="De Regreso a Casa.png" alt="IRADI Logo" />
-        </span>
-        </div>
-        <div class="border-l-4 pl-4 border-indigo-600">
-          <h3 class="text-xl font-semibold text-indigo-700">Semana de Oración y Ayuno</h3>
-          <p class="text-gray-600">12 - 18 de octubre | Sede Central IRADI</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action: Prayer Request -->
-  <section id="oracion" class="bg-indigo-600 text-white py-16">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-3xl font-bold mb-4">¿Necesitas oración?</h2>
-      <p class="mb-6 text-lg">Estamos aquí para orar contigo. Envía tu petición y nuestro equipo intercederá por ti.</p>
-      <a href="#contacto" class="px-8 py-3 bg-white text-indigo-700 font-semibold rounded-xl hover:bg-gray-100 transition">Enviar Petición</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-100 py-8">
-    <div class="max-w-6xl mx-auto px-6 text-center text-gray-500 text-sm">
-      © 2025 IRADI — Iglesia de Restauración y Adoración a Dios, Inc. Todos los derechos reservados.
-    </div>
-  </footer>
+    let curr = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    function setSlide(i) {
+      slides.forEach((s, idx) => s.classList.toggle('active', idx===i));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx===i));
+      curr = i;
+    }
+    setInterval(() => setSlide((curr+1)%slides.length), 6000);
+  </script>
 
 </body>
 </html>
